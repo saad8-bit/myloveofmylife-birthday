@@ -4,896 +4,1164 @@
   <meta charset="UTF-8" />
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
   />
   <title>Happy 21st Birthday, Kaoutar 🎂💗</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500&family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --primary-pink: #ffd6e7;
+      --deep-pink: #ff85b3;
+      --hot-pink: #ff4d94;
+      --red-kiss: #ff3366;
+      --gold: #ffd166;
+      --soft-gold: #fff5e1;
+      --dark-bg: #1a0b1a;
+      --light-bg: rgba(255, 255, 255, 0.08);
+      --text-light: #fff5f9;
+      --text-lighter: #ffe6f2;
+    }
+
+    html {
+      height: 100%;
+      overflow-x: hidden;
     }
 
     body {
       min-height: 100vh;
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top, #ffe6f5 0, #ffbadc 35%, #ff8ec3 65%, #3a1135 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      padding: 16px;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: 
+        radial-gradient(ellipse at top, #2a0f2a 0%, #1a0b1a 60%, #0d050d 100%),
+        radial-gradient(circle at 20% 30%, rgba(255, 133, 179, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(255, 209, 102, 0.1) 0%, transparent 25%);
+      color: var(--text-light);
+      padding: 0;
       overflow-x: hidden;
+      position: relative;
+      width: 100%;
     }
 
-    /* Floating hearts background */
-    .heart {
+    /* Mobile-specific adjustments */
+    @media only screen and (max-width: 767px) {
+      body {
+        padding: 0 16px;
+      }
+    }
+
+    /* Animated background for mobile */
+    .bg-ornament {
       position: fixed;
-      width: 16px;
-      height: 16px;
-      background: rgba(255, 255, 255, 0.9);
-      transform: rotate(45deg);
-      border-radius: 50% 50% 0 50%;
-      pointer-events: none;
-      animation: floatUp 6s linear forwards;
-      opacity: 0.9;
-      z-index: 1;
+      opacity: 0.03;
+      z-index: 0;
+      animation: float 20s infinite linear;
     }
 
-    .heart::before,
-    .heart::after {
+    .bg-ornament-1 {
+      top: 10%;
+      left: 5%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, var(--primary-pink) 0%, transparent 70%);
+      animation-delay: 0s;
+    }
+
+    .bg-ornament-2 {
+      bottom: 15%;
+      right: 5%;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+      animation-delay: -5s;
+    }
+
+    .bg-ornament-3 {
+      top: 40%;
+      right: 10%;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, var(--deep-pink) 0%, transparent 70%);
+      animation-delay: -10s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      33% { transform: translateY(-20px) rotate(120deg); }
+      66% { transform: translateY(10px) rotate(240deg); }
+    }
+
+    /* FLOATING HEARTS - LOTS OF THEM! */
+    .floating-heart {
+      position: fixed;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0;
+      animation: float-up 15s infinite linear;
+    }
+
+    .heart {
+      width: 24px;
+      height: 24px;
+      background: var(--hot-pink);
+      transform: rotate(45deg);
+      position: relative;
+      box-shadow: 0 0 12px rgba(255, 77, 148, 0.7);
+    }
+
+    .heart:before,
+    .heart:after {
       content: "";
       position: absolute;
-      width: 16px;
-      height: 16px;
-      background: inherit;
+      width: 24px;
+      height: 24px;
+      background: var(--hot-pink);
       border-radius: 50%;
     }
 
-    .heart::before {
-      top: -8px;
+    .heart:before {
+      top: -12px;
       left: 0;
     }
 
-    .heart::after {
-      left: -8px;
+    .heart:after {
       top: 0;
+      left: -12px;
     }
 
-    @keyframes floatUp {
+    /* Different pink shades for hearts */
+    .heart.light-pink {
+      background: var(--primary-pink);
+      box-shadow: 0 0 12px rgba(255, 214, 231, 0.7);
+    }
+
+    .heart.light-pink:before,
+    .heart.light-pink:after {
+      background: var(--primary-pink);
+    }
+
+    .heart.medium-pink {
+      background: var(--deep-pink);
+      box-shadow: 0 0 12px rgba(255, 133, 179, 0.7);
+    }
+
+    .heart.medium-pink:before,
+    .heart.medium-pink:after {
+      background: var(--deep-pink);
+    }
+
+    /* Red kisses */
+    .kiss {
+      font-size: 28px;
+      color: var(--red-kiss);
+      text-shadow: 0 0 15px rgba(255, 51, 102, 0.9);
+      filter: drop-shadow(0 0 5px rgba(255, 51, 102, 0.7));
+    }
+
+    @keyframes float-up {
       0% {
-        transform: translateY(0) rotate(45deg) scale(0.7);
+        transform: translateY(100vh) rotate(0deg) scale(0.5);
         opacity: 0;
       }
-      20% {
-        opacity: 1;
+      10% {
+        opacity: 0.9;
+      }
+      90% {
+        opacity: 0.9;
       }
       100% {
-        transform: translateY(-140vh) rotate(45deg) scale(1.1);
+        transform: translateY(-100px) rotate(360deg) scale(1);
         opacity: 0;
       }
     }
 
-    /* Top mobile hint */
-    .top-hint {
+    /* Wobble animation for kisses */
+    @keyframes wobble {
+      0%, 100% { transform: translateX(0) rotate(0deg); }
+      25% { transform: translateX(-5px) rotate(-5deg); }
+      75% { transform: translateX(5px) rotate(5deg); }
+    }
+
+    /* Floating particles optimized for mobile */
+    .particle {
       position: fixed;
-      top: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 50;
-      font-size: 11px;
-      padding: 4px 12px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.16);
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      background: var(--primary-pink);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.6;
+      animation: particle-float 8s infinite linear;
     }
 
-    .top-hint span {
-      font-size: 14px;
+    @keyframes particle-float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.7; }
+      90% { opacity: 0.7; }
+      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
     }
 
-    /* Main card */
-    .card {
+    /* Mobile Container */
+    .mobile-container {
       position: relative;
-      z-index: 2;
-      max-width: 900px;
+      z-index: 10;
       width: 100%;
-      background: radial-gradient(circle at top left, rgba(255, 192, 224, 0.3), transparent 50%),
-                  rgba(35, 7, 37, 0.9);
-      border-radius: 26px;
-      box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.55),
-        0 0 40px rgba(255, 182, 216, 0.65);
-      padding: 22px 18px 26px;
-      backdrop-filter: blur(14px);
-      border: 1.5px solid rgba(255, 255, 255, 0.22);
-    }
-
-    @media (min-width: 720px) {
-      .card {
-        padding: 30px 34px 34px;
-        display: grid;
-        grid-template-columns: 1.05fr 1.1fr;
-        gap: 26px;
-      }
-    }
-
-    .left,
-    .right {
-      width: 100%;
-    }
-
-    .title-block {
-      text-align: center;
-      margin-bottom: 16px;
-    }
-
-    .subtitle-chip {
-      display: inline-flex;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      padding: 4px 12px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+      padding: 20px 0 40px;
     }
 
-    .subtitle-chip span {
-      font-size: 11px;
+    /* Mobile Header */
+    .mobile-header {
+      text-align: center;
+      margin-bottom: 24px;
+      width: 100%;
+      padding: 0 16px;
     }
 
-    .subtitle-chip .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #ff9ebf;
-      box-shadow: 0 0 12px #ff9ebf;
-    }
-
-    .big-title {
-      margin-top: 10px;
-      font-family: "Playfair Display", serif;
-      font-size: 26px;
-      line-height: 1.3;
-      letter-spacing: 0.03em;
-    }
-
-    .big-title span {
-      background: linear-gradient(120deg, #ffe6f8, #ffc5d0, #ffe8b8);
+    .mobile-header-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--primary-pink) 0%, var(--gold) 50%, var(--deep-pink) 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
     }
 
-    .age-tagline {
-      font-size: 12px;
+    .mobile-header-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-lighter);
+      font-weight: 300;
+      letter-spacing: 1.5px;
+      margin-top: 12px;
+      text-transform: uppercase;
       opacity: 0.9;
-      margin-top: 4px;
     }
 
-    /* Cake scene */
-    .cake-scene {
-      margin-top: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .cake-wrapper {
+    /* Cake for mobile */
+    .mobile-cake-container {
       position: relative;
-      width: 230px;
-      height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .moon-glow {
-      width: 230px;
-      height: 230px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 15%, #ffffff 0, #ffd9f6 30%, rgba(0, 0, 0, 0) 70%);
-      filter: blur(1px);
-      position: absolute;
-      top: -34px;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0.95;
-      pointer-events: none;
-    }
-
-    .plate {
-      position: absolute;
-      bottom: 6px;
-      width: 210px;
-      height: 36px;
-      background: radial-gradient(circle at 50% 0, #fff0fa 0, #f7c5e6 40%, #c98faa 100%);
-      border-radius: 50%;
-      box-shadow:
-        0 16px 30px rgba(0, 0, 0, 0.55),
-        0 0 18px rgba(255, 255, 255, 0.65);
-    }
-
-    .plate::before {
-      content: "";
-      position: absolute;
-      inset: 6px 14px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      opacity: 0.75;
-    }
-
-    /* CAKE + LAYERS (FIXED STACKING) */
-    .cake {
-      position: absolute;
-      bottom: 28px;
-      width: 180px;
-      height: 150px; /* Space for all 3 layers */
-    }
-
-    /* Hello Kitty–style bow on the cake */
-    .bow {
-      position: absolute;
-      top: -30px;
-      left: 18px;
-      width: 40px;
-      height: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 12;
-    }
-
-    .bow-part {
-      width: 18px;
-      height: 24px;
-      border-radius: 50% 50% 60% 60%;
-      background: radial-gradient(circle at 30% 20%, #ffe5f5 0, #ff74a9 60%, #e0377f 100%);
-      box-shadow: 0 0 10px rgba(255, 156, 198, 0.9);
-    }
-
-    .bow-center {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 20%, #ffffff 0, #ffc0dd 40%, #ff4c8a 100%);
-      box-shadow: 0 0 10px rgba(255, 142, 193, 0.9);
-    }
-
-    /* All layers stacked absolutely inside .cake */
-    .cake-layer {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
       width: 100%;
-      height: 52px;
-      border-radius: 24px 24px 16px 16px;
-      background: linear-gradient(180deg, #ffe1f9, #ff9ec5);
-      box-shadow: 0 9px 15px rgba(0, 0, 0, 0.4);
-      overflow: hidden;
-    }
-
-    /* Top layer */
-    .cake-layer.top {
-      top: 0;
-    }
-
-    /* Middle layer */
-    .cake-layer.middle {
-      top: 38px;
-      background: linear-gradient(180deg, #ffe9c9, #ffb972);
-      z-index: 2;
-    }
-
-    /* Bottom layer */
-    .cake-layer.bottom {
-      top: 76px;
-      background: linear-gradient(180deg, #e5d7ff, #b58dff);
-      z-index: 1;
-    }
-
-    .cake-side-shine {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0.45), transparent 40%, transparent 60%, rgba(0, 0, 0, 0.25));
-      mix-blend-mode: screen;
-      opacity: 0.85;
-    }
-
-    .top-icing {
-      position: absolute;
-      top: -18px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 118%;
-      height: 36px;
-      background: radial-gradient(circle at 50% 0, #fff7fd 0, #ffe3f6 40%, #f9b3d3 100%);
-      border-radius: 999px;
-      box-shadow: 0 8px 14px rgba(0, 0, 0, 0.25);
-      overflow: hidden;
-      z-index: 4;
-    }
-
-    .drip {
-      position: absolute;
-      width: 18px;
-      height: 30px;
-      background: #ffe4f4;
-      border-radius: 999px;
-      bottom: -12px;
-    }
-
-    .drip:nth-child(1) { left: 16%; height: 24px; animation: drip-swing 4s ease-in-out infinite; }
-    .drip:nth-child(2) { left: 37%; animation: drip-swing 3.8s ease-in-out infinite 0.4s; }
-    .drip:nth-child(3) { left: 58%; height: 28px; animation: drip-swing 4.2s ease-in-out infinite 0.2s; }
-    .drip:nth-child(4) { left: 76%; animation: drip-swing 3.6s ease-in-out infinite 0.7s; }
-
-    @keyframes drip-swing {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(3px); }
-    }
-
-    .sprinkles {
-      position: absolute;
-      inset: 5px 10px 8px;
+      max-width: 320px;
+      height: 300px;
+      margin-bottom: 30px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      justify-content: center;
-      opacity: 0.9;
-    }
-
-    .sprinkle {
-      width: 9px;
-      height: 4px;
-      border-radius: 999px;
-      transform: rotate(-15deg);
-      background: #ff8fbd; /* Pink */
-    }
-
-    /* Minions vibe: yellow & blue sprinkles mixed in */
-    .sprinkle:nth-child(3n) {
-      background: #ffe86a; /* Minion yellow */
-    }
-
-    .sprinkle:nth-child(4n) {
-      background: #6fb9ff; /* Minion blue */
-    }
-
-    /* Candle group */
-    .candle-group {
-      position: absolute;
-      top: -28px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 12px;
       justify-content: center;
       align-items: flex-end;
+    }
+
+    .mobile-cake-stand {
+      position: absolute;
+      bottom: 0;
+      width: 260px;
+      height: 20px;
+      background: linear-gradient(to bottom, #e6d5c3, #d4c4b3);
+      border-radius: 50%;
+      box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.5),
+        inset 0 2px 5px rgba(255, 255, 255, 0.3);
+      z-index: 5;
+    }
+
+    .mobile-cake-stand::before {
+      content: "";
+      position: absolute;
+      width: 90%;
+      height: 10px;
+      background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.1));
+      border-radius: 50%;
+      top: 50%;
+      left: 5%;
+      transform: translateY(-50%);
+    }
+
+    /* Cake layers */
+    .mobile-cake {
+      position: relative;
+      width: 230px;
+      height: 260px;
       z-index: 10;
     }
 
-    .candle {
-      width: 13px;
-      height: 50px;
-      border-radius: 8px;
-      background: repeating-linear-gradient(
-        135deg,
-        #ffffff,
-        #ffffff 5px,
-        #ff9ebf 5px,
-        #ff9ebf 10px
-      );
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .mobile-cake-layer {
+      position: absolute;
+      width: 100%;
+      border-radius: 50% 50% 10px 10px;
+      box-shadow: 
+        0 5px 12px rgba(0, 0, 0, 0.3),
+        inset 0 2px 5px rgba(255, 255, 255, 0.2);
     }
 
-    .candle::after {
+    .mobile-cake-bottom {
+      height: 85px;
+      bottom: 0;
+      background: linear-gradient(to bottom, #ffb8d9, #ff8ec3);
+      z-index: 1;
+    }
+
+    .mobile-cake-middle {
+      height: 85px;
+      bottom: 70px;
+      width: 90%;
+      left: 5%;
+      background: linear-gradient(to bottom, #ffe1c6, #ffc999);
+      z-index: 2;
+    }
+
+    .mobile-cake-top {
+      height: 85px;
+      bottom: 130px;
+      width: 80%;
+      left: 10%;
+      background: linear-gradient(to bottom, #ffd6e7, #ffb3d9);
+      z-index: 3;
+    }
+
+    .mobile-cake-top-decoration {
+      position: absolute;
+      width: 100%;
+      height: 25px;
+      bottom: 120px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      z-index: 4;
+    }
+
+    .mobile-cake-pearl {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, white, var(--primary-pink));
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+    }
+
+    /* Candles for mobile */
+    .mobile-candles {
+      position: absolute;
+      bottom: 200px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      z-index: 15;
+    }
+
+    .mobile-candle {
+      width: 12px;
+      height: 50px;
+      background: linear-gradient(to right, #fff, #ffebf3, #fff);
+      border-radius: 6px;
+      position: relative;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    }
+
+    .mobile-candle::before {
       content: "";
       position: absolute;
       top: -6px;
-      width: 3px;
-      height: 8px;
-      border-radius: 999px;
-      background: #4d2b1f;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 15px;
+      height: 7px;
+      background: linear-gradient(to right, #ff9ec5, #ff6b9d);
+      border-radius: 50% 50% 40% 40%;
     }
 
-    .flame {
+    .mobile-flame {
       position: absolute;
-      top: -23px;
-      width: 16px;
-      height: 24px;
-      background: radial-gradient(circle at 50% 15%, #ffffff 0, #ffeec2 30%, #ffb347 55%, #ff6b6b 100%);
-      border-radius: 50% 50% 50% 50%;
-      transform-origin: bottom center;
-      box-shadow:
-        0 0 14px rgba(255, 226, 149, 0.9),
-        0 0 26px rgba(255, 120, 120, 0.9);
-      animation: flame-flicker 1.25s ease-in-out infinite alternate;
-      opacity: 1;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 25px;
+      background: radial-gradient(ellipse at center, #fff9c4 0%, #ffb347 50%, #ff6b6b 100%);
+      border-radius: 50% 50% 20% 20%;
+      box-shadow: 
+        0 0 15px rgba(255, 215, 0, 0.8),
+        0 0 30px rgba(255, 100, 100, 0.5);
+      animation: mobile-flicker 1.5s infinite alternate;
+      z-index: 20;
     }
 
-    @keyframes flame-flicker {
-      0% {
-        transform: translateX(-1px) scale(1);
-        opacity: 0.9;
-      }
-      50% {
-        transform: translateX(1px) scale(1.06);
-        opacity: 1;
-      }
-      100% {
-        transform: translateX(-1.5px) scale(0.96);
-        opacity: 0.85;
-      }
-    }
-
-    .flame.off {
+    .mobile-flame.out {
       animation: none;
       opacity: 0;
-      box-shadow: none;
+      transform: translateX(-50%) scale(0.1);
+      transition: all 0.5s ease;
     }
 
-    .age-badge {
+    @keyframes mobile-flicker {
+      0%, 100% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.05); }
+      80% { transform: translateX(-50%) scale(0.95); }
+    }
+
+    /* Age badge for mobile */
+    .mobile-age-badge {
       position: absolute;
-      top: -40px;
-      right: -18px;
-      width: 54px;
-      height: 54px;
+      top: 15px;
+      right: 10px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 20%, #ffffff 0, #ffe1f6 35%, #ff96bd 100%);
+      background: radial-gradient(circle at 30% 20%, #fff, var(--primary-pink));
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: "Playfair Display", serif;
-      font-size: 20px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
       font-weight: 700;
-      color: #7b1440;
-      box-shadow:
-        0 0 18px rgba(255, 170, 199, 0.9),
-        0 16px 24px rgba(0, 0, 0, 0.5);
+      color: #9a1750;
+      box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.4),
+        0 0 15px rgba(255, 182, 193, 0.6);
+      z-index: 25;
+      border: 2px solid rgba(255, 255, 255, 0.3);
     }
 
-    .age-badge span {
-      font-size: 10px;
+    .mobile-age-badge span {
+      font-size: 9px;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.8px;
+      margin-top: 2px;
     }
 
-    /* Buttons & controls */
-    .controls-buttons {
+    /* Mobile Controls - Touch friendly */
+    .mobile-controls {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
+      flex-direction: column;
+      gap: 12px;
       margin-top: 10px;
+      margin-bottom: 30px;
+      width: 100%;
+      max-width: 320px;
+      padding: 0 16px;
     }
 
-    .btn {
+    .mobile-control-btn {
+      padding: 16px 20px;
       border: none;
-      outline: none;
-      padding: 8px 16px;
-      border-radius: 999px;
+      border-radius: 50px;
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
       cursor: pointer;
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      display: inline-flex;
+      transition: all 0.3s ease;
+      display: flex;
       align-items: center;
-      gap: 6px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      justify-content: center;
+      gap: 10px;
+      letter-spacing: 0.5px;
+      min-height: 56px;
+      touch-action: manipulation;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #ff9ebf, #ff6f9c);
-      color: #2c021b;
-      box-shadow:
-        0 10px 18px rgba(0, 0, 0, 0.45),
-        0 0 18px rgba(255, 150, 189, 0.9);
+    .mobile-btn-wish {
+      background: linear-gradient(135deg, var(--deep-pink), #ff6b9d);
+      color: white;
+      box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
     }
 
-    .btn-ghost {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      color: #ffe6fb;
-      backdrop-filter: blur(6px);
+    .mobile-btn-light {
+      background: transparent;
+      color: var(--text-lighter);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
     }
 
-    .btn:active {
-      transform: translateY(1px) scale(0.98);
-      box-shadow: none;
+    .mobile-btn-music {
+      background: transparent;
+      color: var(--text-lighter);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
     }
 
-    .btn:hover {
-      transform: translateY(-1px) scale(1.02);
-      box-shadow:
-        0 14px 24px rgba(0, 0, 0, 0.55),
-        0 0 18px rgba(255, 180, 214, 0.9);
+    .mobile-control-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 8px rgba(255, 107, 157, 0.3);
     }
 
-    .btn span.icon {
-      font-size: 14px;
-    }
-
-    .now-playing {
-      margin-top: 4px;
-      font-size: 11px;
+    .mobile-music-indicator {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--text-lighter);
       text-align: center;
-      opacity: 0.85;
+      opacity: 0.8;
+      min-height: 20px;
+      padding: 0 16px;
     }
 
-    /* Text / letter side */
-    .letter {
-      margin-top: 20px;
-      padding: 16px 14px 14px;
-      border-radius: 18px;
-      background: radial-gradient(circle at top left, rgba(255, 184, 214, 0.36), transparent 55%),
-                  rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.45);
+    /* Mobile Letter */
+    .mobile-letter {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 24px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 30px;
     }
 
-    @media (min-width: 720px) {
-      .letter {
-        margin-top: 0;
-      }
+    .mobile-letter::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-pink), var(--gold));
     }
 
-    .letter h1 {
-      font-family: "Playfair Display", serif;
-      font-size: 20px;
+    .mobile-letter-header {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .mobile-letter-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.8rem;
+      color: var(--primary-pink);
       margin-bottom: 8px;
-      color: #ffe0f4;
+      line-height: 1.2;
     }
 
-    .letter h1 span {
-      color: #ffe9ff;
+    .mobile-letter-subtitle {
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-lighter);
+      opacity: 0.8;
     }
 
-    .letter p {
-      font-size: 13px;
+    .mobile-letter-content {
       line-height: 1.7;
-      margin-bottom: 10px;
-      color: #ffeef9;
+      font-size: 0.95rem;
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 8px;
     }
 
-    .letter p strong {
-      color: #ffd1ff;
+    .mobile-letter-content::-webkit-scrollbar {
+      width: 4px;
     }
 
-    .signature {
-      margin-top: 12px;
-      font-style: italic;
+    .mobile-letter-content::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+
+    .mobile-letter-content::-webkit-scrollbar-thumb {
+      background: var(--primary-pink);
+      border-radius: 10px;
+    }
+
+    .mobile-letter-content p {
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .mobile-letter-content strong {
+      color: var(--primary-pink);
       font-weight: 500;
-      font-size: 13px;
-      color: #ffe6ff;
     }
 
-    .signature span {
+    .mobile-letter-signature {
+      margin-top: 24px;
+      text-align: right;
+      font-family: "Dancing Script", cursive;
+      font-size: 1.3rem;
+      color: var(--gold);
+    }
+
+    .mobile-letter-signature span {
       display: block;
+      font-size: 0.9rem;
+      font-family: "Inter", sans-serif;
+      color: var(--text-lighter);
       margin-top: 4px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-size: 11px;
-      color: #ffb9d9;
+      font-style: italic;
     }
 
-    .soft-divider {
-      width: 64px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-      margin: 8px 0 12px;
+    /* Heart animation for mobile */
+    .mobile-heart-burst {
+      position: fixed;
+      width: 18px;
+      height: 18px;
+      background: var(--primary-pink);
+      transform: rotate(45deg);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 100;
+      box-shadow: 0 0 8px var(--primary-pink);
     }
 
-    .whisper {
-      font-size: 11px;
-      opacity: 0.88;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .mobile-heart-burst:before,
+    .mobile-heart-burst:after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: var(--primary-pink);
+      border-radius: 50%;
     }
 
-    .tiny-note {
-      font-size: 11px;
-      opacity: 0.9;
-      margin-top: 4px;
+    .mobile-heart-burst:before {
+      top: -9px;
+      left: 0;
     }
 
-    /* Responsive tweaks */
-    @media (max-width: 720px) {
-      .big-title {
-        font-size: 22px;
+    .mobile-heart-burst:after {
+      top: 0;
+      left: -9px;
+    }
+
+    /* Mobile Footer */
+    .mobile-footer {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.8rem;
+      color: var(--text-lighter);
+      opacity: 0.7;
+      letter-spacing: 1px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    /* Swipe hint for mobile */
+    .mobile-swipe-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      opacity: 0.7;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 0.9; }
+    }
+
+    /* Tap animation for buttons */
+    @keyframes tap-feedback {
+      0% { transform: scale(1); }
+      50% { transform: scale(0.97); }
+      100% { transform: scale(1); }
+    }
+
+    .tap-animation {
+      animation: tap-feedback 0.3s ease;
+    }
+
+    /* Hide scrollbar for a cleaner look */
+    ::-webkit-scrollbar {
+      width: 0;
+      background: transparent;
+    }
+
+    /* Portrait orientation warning */
+    @media screen and (max-height: 600px) and (orientation: portrait) {
+      .mobile-cake-container {
+        height: 240px;
+        margin-bottom: 20px;
       }
-      .card {
-        text-align: center;
+      
+      .mobile-letter-content {
+        max-height: 250px;
       }
-      .letter {
-        text-align: left;
+    }
+
+    /* Landscape orientation adjustments */
+    @media screen and (orientation: landscape) and (max-height: 500px) {
+      .mobile-container {
+        padding: 10px 0 20px;
+      }
+      
+      .mobile-cake-container {
+        height: 220px;
+        margin-bottom: 15px;
+      }
+      
+      .mobile-letter {
+        padding: 15px;
+        margin-bottom: 15px;
+      }
+      
+      .mobile-letter-content {
+        max-height: 180px;
+      }
+    }
+
+    /* iPhone notch safe areas */
+    @supports (padding: max(0px)) {
+      body {
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
       }
     }
   </style>
 </head>
 <body>
+  <!-- Background ornaments -->
+  <div class="bg-ornament bg-ornament-1"></div>
+  <div class="bg-ornament bg-ornament-2"></div>
+  <div class="bg-ornament bg-ornament-3"></div>
 
-  <!-- Mobile hint -->
-  <div class="top-hint">
-    <span>🎧</span>
-    <div>Best with sound on & full screen</div>
-  </div>
+  <!-- Mobile Container -->
+  <div class="mobile-container">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <h1 class="mobile-header-title">Happy 21st Birthday, Kaoutar</h1>
+      <div class="mobile-header-subtitle">For my Hello Kitty heart & my silly Minion 💗</div>
+    </div>
 
-  <!-- Main card -->
-  <div class="card">
-    <!-- Left: Cake & controls -->
-    <div class="left">
-      <div class="title-block">
-        <div class="subtitle-chip">
-          <div class="dot"></div>
-          <span>💗 For my Hello Kitty heart & my silly Minion & my Princess 💗</span>
-          <div>
+    <!-- Cake for mobile -->
+    <div class="mobile-cake-container">
+      <div class="mobile-cake-stand"></div>
+      
+      <div class="mobile-cake">
+        <div class="mobile-cake-layer mobile-cake-bottom"></div>
+        <div class="mobile-cake-layer mobile-cake-middle"></div>
+        <div class="mobile-cake-layer mobile-cake-top"></div>
+        
+        <div class="mobile-cake-top-decoration">
+          <div class="mobile-cake-pearl"></div>
+          <div class="mobile-cake-pearl"></div>
+          <div class="mobile-cake-pearl"></div>
+          <div class="mobile-cake-pearl"></div>
+        </div>
+        
+        <div class="mobile-candles" id="mobileCandles">
+          <div class="mobile-candle">
+            <div class="mobile-flame" id="mobileFlame1"></div>
+          </div>
+          <div class="mobile-candle">
+            <div class="mobile-flame" id="mobileFlame2"></div>
+          </div>
+          <div class="mobile-candle">
+            <div class="mobile-flame" id="mobileFlame3"></div>
           </div>
         </div>
-        <h2 class="big-title">
-          Happy <span>21st Birthday</span><br />
-          My Kbida, <span>Kaoutar</span> 🎂
-        </h2>
-      </div>
-
-      <div class="cake-scene">
-        <div class="cake-wrapper">
-          <div class="moon-glow"></div>
-
-          <div class="plate"></div>
-
-          <div class="cake">
-            <div class="bow">
-              <div class="bow-part"></div>
-              <div class="bow-center"></div>
-              <div class="bow-part"></div>
-            </div>
-
-            <div class="top-icing">
-              <div class="drip"></div>
-              <div class="drip"></div>
-              <div class="drip"></div>
-              <div class="drip"></div>
-            </div>
-
-            <div class="cake-layer top">
-              <div class="sprinkles">
-                <div class="sprinkle"></div>
-                <div class="sprinkle"></div>
-                <div class="sprinkle"></div>
-                <div class="sprinkle"></div>
-                <div class="sprinkle"></div>
-                <div class="sprinkle"></div>
-                <div class="sprinkle"></div>
-                <div class="sprinkle"></div>
-              </div>
-              <div class="cake-side-shine"></div>
-            </div>
-
-            <div class="cake-layer middle">
-              <div class="sprinkles">
-                <div class="sprinkle"></div>
-                <div class="sprinkle"></div>
-                <div class="sprinkle"></div>
-                <div class="sprinkle"></div>
-                <div class="sprinkle"></div>
-                <div class="sprinkle"></div>
-              </div>
-              <div class="cake-side-shine"></div>
-            </div>
-
-            <div class="cake-layer bottom">
-              <div class="cake-side-shine"></div>
-            </div>
-
-            <div class="candle-group" id="candleGroup">
-              <div class="candle">
-                <div class="flame"></div>
-              </div>
-              <div class="candle">
-                <div class="flame"></div>
-              </div>
-              <div class="candle">
-                <div class="flame"></div>
-              </div>
-            </div>
-
-            <div class="age-badge">
-              21
-              <span>years</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="controls-buttons">
-          <button class="btn btn-primary" onclick="blowCandles()">
-            <span class="icon">💫</span>
-            Make a wish
-            wla nslkhk
-          </button>
-          <button class="btn btn-ghost" onclick="lightCandles()">
-            <span class="icon">✨</span>
-            Light again
-          </button>
-          <button class="btn btn-ghost" onclick="toggleMusic()">
-            <span class="icon">🎵</span>
-            MZIKA
-          </button>
-        </div>
-        <div class="now-playing" id="nowPlaying">
-          Tap “MZIKA” Tfo mabghatch tkhdm dsl . 💗
+        
+        <div class="mobile-age-badge">
+          21
+          <span>Years</span>
         </div>
       </div>
     </div>
 
-    <!-- Right: Letter -->
-    <div class="right">
-      <div class="letter">
-        <div class="whisper">From my heart to yours</div>
-        <div class="soft-divider"></div>
+    <!-- Mobile Controls -->
+    <div class="mobile-controls">
+      <button class="mobile-control-btn mobile-btn-wish" id="mobileWishBtn">
+        <i class="fas fa-star"></i> Make a Wish
+      </button>
+      <button class="mobile-control-btn mobile-btn-light" id="mobileLightBtn">
+        <i class="fas fa-magic"></i> Light Candles
+      </button>
+      <button class="mobile-control-btn mobile-btn-music" id="mobileMusicBtn">
+        <i class="fas fa-music"></i> Play Our Song
+      </button>
+    </div>
+    
+    <div class="mobile-music-indicator" id="mobileMusicIndicator">
+      Tap "Play Our Song" for a beautiful melody
+    </div>
+    
+    <div class="mobile-swipe-hint">
+      <i class="fas fa-arrow-down"></i>
+      <span>Swipe down to read the letter</span>
+      <i class="fas fa-arrow-down"></i>
+    </div>
 
-        <h1>My Love, My <span>Kbida</span> Kaoutar,</h1>
-
-        <p>
-          There are moments where I stop and realize how lucky I am, lucky that out of everyone in this world,
-          you are the one my heart chose. And even with the distance between us, you’ve become the closest part
-          of my life—the one I think of every morning, and the last thought before I sleep.
-        </p>
-
-        <p>
-          You’re turning <strong>21</strong> — a new year of your life, a new chapter. And I want this chapter to be
-          filled with love, safety, and the certainty that you are not walking it alone. I’m right here with you,
-          always. Even if my hands can’t reach you yet, my heart already holds you so gently.
-        </p>
-
-        <p>
-          You have no idea how strong you make me feel. How your smile, even through a phone, can turn a difficult day
-          into something soft and hopeful. You have a way of bringing peace into my chaos, of making distance feel
-          small, and of reminding me that love doesn’t need a map… it always finds its way.
-        </p>
-
-        <p>
-          I want you to feel deeply loved, the way you deserve.<br />
-          I want you to feel safe, knowing you are cherished by someone who sees your soul.<br />
-          I want you to feel proud, knowing that my loyalty belongs only to you.
-        </p>
-
-        <p>
-          One day—and it’s closer than it seems—I will hold you on your birthday instead of celebrating from afar.
-          I will look into your eyes, brush your hair behind your ear, and kiss your forehead as I whisper,
-          “Happy Birthday, my angel… I’m yours and only yours.”
-        </p>
-
-        <p>
-          Until that day arrives, remember this:<br />
-          You are turning 21, but you have already given my life a thousand reasons to grow.<br />
-          You are my future, my peace, my favorite dream.<br />
-          And I choose you today, tomorrow, and every year of your life.
-        </p>
-
-        <p class="tiny-note">
-          Just like a little Hello Kitty with a pink bow and a silly Minion full of joy, you are both my softness
-          and my happiness in one heart. 💗💛
-        </p>
-
-        <p class="signature">
-          With all of my love, deeply, proudly, endlessly…<br />
-          <span>Yours forever, Saad</span>
-        </p>
+    <!-- Mobile Letter with YOUR original message -->
+    <div class="mobile-letter">
+      <div class="mobile-letter-header">
+        <h2 class="mobile-letter-title">From my heart to yours</h2>
+        <div class="mobile-letter-subtitle">My Love, My Kbida Kaoutar</div>
       </div>
+      
+      <div class="mobile-letter-content">
+        <p>There are moments where I stop and realize how lucky I am, lucky that out of everyone in this world, you are the one my heart chose. And even with the distance between us, you've become the closest part of my life—the one I think of every morning, and the last thought before I sleep.</p>
+        
+        <p>You're turning <strong>21</strong> — a new year of your life, a new chapter. And I want this chapter to be filled with love, safety, and the certainty that you are not walking it alone. I'm right here with you, always. Even if my hands can't reach you yet, my heart already holds you so gently.</p>
+        
+        <p>You have no idea how strong you make me feel. How your smile, even through a phone, can turn a difficult day into something soft and hopeful. You have a way of bringing peace into my chaos, of making distance feel small, and of reminding me that love doesn't need a map… it always finds its way.</p>
+        
+        <p><strong>I want you to feel deeply loved, the way you deserve.<br>
+        I want you to feel safe, knowing you are cherished by someone who sees your soul.<br>
+        I want you to feel proud, knowing that my loyalty belongs only to you.</strong></p>
+        
+        <p>One day—and it's closer than it seems—I will hold you on your birthday instead of celebrating from afar. I will look into your eyes, brush your hair behind your ear, and kiss your forehead as I whisper, "Happy Birthday, my angel… I'm yours and only yours."</p>
+        
+        <p>Until that day arrives, remember this:<br>
+        You are turning 21, but you have already given my life a thousand reasons to grow.<br>
+        You are my future, my peace, my favorite dream.<br>
+        And I choose you today, tomorrow, and every year of your life.</p>
+        
+        <p>Just like a little Hello Kitty with a pink bow and a silly Minion full of joy, you are both my softness and my happiness in one heart. 💗💛</p>
+      </div>
+      
+      <div class="mobile-letter-signature">
+        With all of my love, deeply, proudly, endlessly…
+        <span>Yours forever, Saad</span>
+      </div>
+    </div>
+    
+    <!-- Mobile Footer -->
+    <div class="mobile-footer">
+      Made with endless love for Kaoutar's 21st birthday • Always and forever
     </div>
   </div>
 
-  <!-- Music (add your own piano track link) -->
-  <audio id="song" loop>
-    <!-- Replace the src below with your romantic piano mp3 link -->
-    <source src="song.mp3.mp3" type="audio/mpeg">
+  <!-- Audio element for music -->
+  <audio id="mobileBirthdayMusic" loop preload="metadata">
+    <source src="https://assets.mixkit.co/music/preview/mixkit-piano-melody-1-125.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    // Candle logic
-    function setFlames(on) {
-      const flames = document.querySelectorAll(".flame");
-      flames.forEach(f => {
-        if (on) {
-          f.classList.remove("off");
-        } else {
-          f.classList.add("off");
-        }
+    // DOM elements for mobile
+    const mobileWishBtn = document.getElementById('mobileWishBtn');
+    const mobileLightBtn = document.getElementById('mobileLightBtn');
+    const mobileMusicBtn = document.getElementById('mobileMusicBtn');
+    const mobileMusicIndicator = document.getElementById('mobileMusicIndicator');
+    const mobileFlames = [
+      document.getElementById('mobileFlame1'), 
+      document.getElementById('mobileFlame2'), 
+      document.getElementById('mobileFlame3')
+    ];
+    const mobileMusic = document.getElementById('mobileBirthdayMusic');
+    
+    // State variables
+    let mobileCandlesLit = true;
+    let mobileMusicPlaying = false;
+    
+    // Create LOTS of floating hearts and kisses
+    function createFloatingHearts() {
+      // Create A LOT of hearts (30 at a time)
+      for (let i = 0; i < 30; i++) {
+        setTimeout(() => {
+          const floatingElement = document.createElement('div');
+          floatingElement.classList.add('floating-heart');
+          
+          // Random properties
+          const left = Math.random() * 100;
+          const duration = Math.random() * 12 + 10; // 10-22 seconds
+          const delay = Math.random() * 5;
+          const size = Math.random() * 0.8 + 0.4; // 0.4-1.2 scale
+          
+          floatingElement.style.left = `${left}%`;
+          floatingElement.style.animationDuration = `${duration}s`;
+          floatingElement.style.animationDelay = `${delay}s`;
+          floatingElement.style.transform = `scale(${size})`;
+          
+          // Decide if it's a heart or a kiss (70% hearts, 30% kisses)
+          const isKiss = Math.random() > 0.7;
+          
+          if (isKiss) {
+            // Create a red kiss
+            floatingElement.classList.add('kiss');
+            floatingElement.innerHTML = '💋';
+            floatingElement.style.fontSize = `${Math.random() * 24 + 20}px`;
+            floatingElement.style.animation = `float-up ${duration}s infinite linear, wobble 3s infinite ease-in-out`;
+          } else {
+            // Create a pink heart
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            // Random pink shade
+            const pinkType = Math.random();
+            if (pinkType < 0.33) {
+              heart.classList.add('light-pink');
+            } else if (pinkType < 0.66) {
+              heart.classList.add('medium-pink');
+            }
+            // else stays hot pink
+            
+            floatingElement.appendChild(heart);
+          }
+          
+          document.body.appendChild(floatingElement);
+          
+          // Remove element after animation
+          setTimeout(() => {
+            if (floatingElement.parentNode) {
+              floatingElement.remove();
+            }
+          }, duration * 1000);
+        }, i * 200); // Stagger creation
+      }
+    }
+    
+    // Create heart burst animation for mobile
+    function createMobileHeartBurst(x, y, count = 20) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.classList.add('mobile-heart-burst');
+          
+          // Position at touch location
+          heart.style.left = `${x}px`;
+          heart.style.top = `${y}px`;
+          
+          // Random properties
+          const size = Math.random() * 20 + 10;
+          const angle = Math.random() * Math.PI * 2;
+          const distance = Math.random() * 100 + 50;
+          const duration = Math.random() * 1.5 + 0.5;
+          
+          heart.style.width = `${size}px`;
+          heart.style.height = `${size}px`;
+          
+          // Random pink/red color
+          const colors = ['#ffd6e7', '#ff85b3', '#ff4d94', '#ff3366'];
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          heart.style.background = color;
+          heart.style.boxShadow = `0 0 10px ${color}`;
+          
+          document.body.appendChild(heart);
+          
+          // Animate heart
+          setTimeout(() => {
+            heart.style.opacity = '1';
+            heart.style.transform = `rotate(45deg) translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+            heart.style.opacity = '0';
+          }, 10);
+          
+          // Remove heart after animation
+          setTimeout(() => {
+            if (heart.parentNode) {
+              heart.remove();
+            }
+          }, duration * 1000);
+        }, i * 30);
+      }
+    }
+    
+    // Blow out candles for mobile
+    function mobileBlowCandles() {
+      if (!mobileCandlesLit) return;
+      
+      mobileCandlesLit = false;
+      
+      // Add tap feedback animation
+      mobileWishBtn.classList.add('tap-animation');
+      setTimeout(() => {
+        mobileWishBtn.classList.remove('tap-animation');
+      }, 300);
+      
+      // Animate each flame going out
+      mobileFlames.forEach((flame, index) => {
+        setTimeout(() => {
+          flame.classList.add('out');
+          
+          // Create heart burst on last flame
+          if (index === mobileFlames.length - 1) {
+            // Get cake position for heart burst
+            const cakeRect = document.querySelector('.mobile-cake-container').getBoundingClientRect();
+            
+            // Create EXTRA hearts and kisses when making a wish
+            for (let i = 0; i < 5; i++) {
+              setTimeout(() => {
+                createMobileHeartBurst(
+                  cakeRect.left + cakeRect.width / 2,
+                  cakeRect.top + cakeRect.height / 2,
+                  15
+                );
+              }, i * 150);
+            }
+            
+            // Vibration feedback for mobile (if supported)
+            if (navigator.vibrate) {
+              navigator.vibrate([100, 50, 100]);
+            }
+            
+            mobileMusicIndicator.innerHTML = "<i class='fas fa-star'></i> Your wish has been sent with a thousand pink hearts...";
+            
+            // Reset message after delay
+            setTimeout(() => {
+              mobileMusicIndicator.textContent = "May all your wishes come true, my love";
+            }, 3000);
+          }
+        }, index * 300);
       });
     }
-
-    function blowCandles() {
-      setFlames(false);
-      createBurstHearts();
-
-      const nowPlaying = document.getElementById("nowPlaying");
-      nowPlaying.textContent =
-        "You made a wish… and I’m wishing with you that it comes true. 💗";
+    
+    // Light candles for mobile
+    function mobileLightCandles() {
+      if (mobileCandlesLit) return;
+      
+      mobileCandlesLit = true;
+      
+      // Add tap feedback animation
+      mobileLightBtn.classList.add('tap-animation');
+      setTimeout(() => {
+        mobileLightBtn.classList.remove('tap-animation');
+      }, 300);
+      
+      // Light each candle
+      mobileFlames.forEach((flame, index) => {
+        setTimeout(() => {
+          flame.classList.remove('out');
+          
+          // Create some hearts when lighting candles
+          if (index === 1) {
+            const cakeRect = document.querySelector('.mobile-cake-container').getBoundingClientRect();
+            createMobileHeartBurst(
+              cakeRect.left + cakeRect.width / 2,
+              cakeRect.top + cakeRect.height / 2,
+              8
+            );
+          }
+          
+          if (index === mobileFlames.length - 1) {
+            mobileMusicIndicator.innerHTML = "<i class='fas fa-magic'></i> Your light shines brighter than all the pink hearts";
+          }
+        }, index * 300);
+      });
     }
-
-    function lightCandles() {
-      setFlames(true);
-      const nowPlaying = document.getElementById("nowPlaying");
-      nowPlaying.textContent =
-        "Your candles are glowing again, just like your light in my life. ✨";
-    }
-
-    // Music logic
-    const audio = document.getElementById("song");
-    let isPlaying = false;
-
-    function toggleMusic() {
-      if (!audio.src || audio.src.includes("song.mp3.mp3")) {
-        alert("Soon there will be a piano song here that reminds me of you. 🎹💗");
-        return;
-      }
-
-      if (isPlaying) {
-        audio.pause();
-        isPlaying = false;
-        document.getElementById("nowPlaying").textContent =
-          "Silence… but my heart is still singing for you.";
+    
+    // Toggle music for mobile
+    function mobileToggleMusic() {
+      // Add tap feedback animation
+      mobileMusicBtn.classList.add('tap-animation');
+      setTimeout(() => {
+        mobileMusicBtn.classList.remove('tap-animation');
+      }, 300);
+      
+      if (mobileMusicPlaying) {
+        mobileMusic.pause();
+        mobileMusicPlaying = false;
+        mobileMusicBtn.innerHTML = '<i class="fas fa-music"></i> Play Our Song';
+        mobileMusicIndicator.innerHTML = "<i class='fas fa-pause'></i> Music paused... hearts still floating for you";
       } else {
-        audio.play().then(() => {
-          isPlaying = true;
-          document.getElementById("nowPlaying").textContent =
-            "A soft piano is playing just for you right now. 🎵";
-        }).catch(() => {
-          document.getElementById("nowPlaying").textContent =
-            "Tap again to allow the song to play on your device. 💕";
+        mobileMusic.play().then(() => {
+          mobileMusicPlaying = true;
+          mobileMusicBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Music';
+          mobileMusicIndicator.innerHTML = "<i class='fas fa-music'></i> A beautiful melody with floating hearts for you";
+          
+          // Create extra hearts when music starts
+          createFloatingHearts();
+          
+          // Vibration feedback for mobile (if supported)
+          if (navigator.vibrate) {
+            navigator.vibrate(100);
+          }
+        }).catch(error => {
+          mobileMusicIndicator.innerHTML = "<i class='fas fa-exclamation-circle'></i> Tap again to allow audio playback";
+          console.log("Audio play failed:", error);
         });
       }
     }
-
-    // Floating hearts background
-    function randomBetween(min, max) {
-      return Math.random() * (max - min) + min;
-    }
-
-    function createFloatingHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.style.left = randomBetween(0, 100) + "vw";
-      heart.style.bottom = "-40px";
-      heart.style.animationDuration = randomBetween(4, 8) + "s";
-      heart.style.transform = "rotate(45deg) scale(" + randomBetween(0.6, 1.1) + ")";
-
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 8000);
-    }
-
-    setInterval(createFloatingHeart, 900);
-
-    // Burst of hearts when blowing candles
-    function createBurstHearts() {
-      for (let i = 0; i < 10; i++) {
-        setTimeout(createFloatingHeart, i * 100);
+    
+    // Event listeners for mobile
+    mobileWishBtn.addEventListener('click', mobileBlowCandles);
+    mobileLightBtn.addEventListener('click', mobileLightCandles);
+    mobileMusicBtn.addEventListener('click', mobileToggleMusic);
+    
+    // Touch feedback for all buttons
+    const mobileButtons = document.querySelectorAll('.mobile-control-btn');
+    mobileButtons.forEach(button => {
+      button.addEventListener('touchstart', function() {
+        this.style.transform = 'translateY(2px)';
+        this.style.boxShadow = '0 2px 8px rgba(255, 107, 157, 0.3)';
+      });
+      
+      button.addEventListener('touchend', function() {
+        this.style.transform = '';
+        this.style.boxShadow = '';
+      });
+    });
+    
+    // Touch anywhere to create hearts (with limits for mobile performance)
+    let lastTouchTime = 0;
+    document.addEventListener('touchstart', (e) => {
+      const now = Date.now();
+      // Limit heart creation to once every 200ms for performance
+      if (now - lastTouchTime > 200) {
+        // Create a burst of hearts at touch location
+        createMobileHeartBurst(e.touches[0].clientX, e.touches[0].clientY, 10);
+        lastTouchTime = now;
+        
+        // Also add a red kiss sometimes
+        if (Math.random() > 0.7) {
+          setTimeout(() => {
+            const kiss = document.createElement('div');
+            kiss.classList.add('floating-heart', 'kiss');
+            kiss.innerHTML = '💋';
+            kiss.style.left = `${e.touches[0].clientX}px`;
+            kiss.style.top = `${e.touches[0].clientY}px`;
+            kiss.style.fontSize = '32px';
+            kiss.style.animationDuration = '8s';
+            kiss.style.zIndex = '5';
+            document.body.appendChild(kiss);
+            
+            setTimeout(() => {
+              if (kiss.parentNode) kiss.remove();
+            }, 8000);
+          }, 300);
+        }
       }
-    }
+    });
+    
+    // Initialize floating hearts and music indicator for mobile
+    window.addEventListener('load', () => {
+      // Start with LOTS of floating hearts and kisses
+      createFloatingHearts();
+      
+      // Keep creating more hearts continuously
+      setInterval(createFloatingHearts, 3000); // Every 3 seconds
+      
+      // Update music indicator based on interaction
+      mobileMusic.addEventListener('play', () => {
+        mobileMusicPlaying = true;
+        mobileMusicBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Music';
+      });
+      
+      mobileMusic.addEventListener('pause', () => {
+        mobileMusicPlaying = false;
+        mobileMusicBtn.innerHTML = '<i class="fas fa-music"></i> Play Our Song';
+      });
+      
+      // Prevent context menu on long press
+      document.addEventListener('contextmenu', (e) => e.preventDefault());
+    });
+    
+    // Handle orientation change
+    window.addEventListener('orientationchange', function() {
+      // Refresh hearts after orientation change
+      setTimeout(() => {
+        createFloatingHearts();
+        createFloatingHearts();
+      }, 500);
+    });
   </script>
 </body>
 </html>
