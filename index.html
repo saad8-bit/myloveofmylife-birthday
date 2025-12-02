@@ -1,1 +1,644 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Interactive Birthday Cake for Kaoutar</title> <style> body { font-family: 'Arial', sans-serif; background: linear-gradient(to bottom, #ffe6f2, #ffb3d9); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; color: #333; } .controls { background: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; width: 100%; max-width: 600px; text-align: center; } .controls h2 { margin-top: 0; color: #e76f51; } .controls label { display: block; margin: 10px 0; } .controls input, .controls button { margin: 5px; padding: 8px; border: 1px solid #ccc; border-radius: 5px; } .controls button { background: #e76f51; color: white; cursor: pointer; } .controls button:hover { background: #d65a3d; } .cake-container { position: relative; width: 400px; height: 300px; margin-bottom: 20px; } .cake { position: absolute; width: 100%; height: 100%; background: linear-gradient(to bottom, #f4a261, #e76f51); border-radius: 50% 50% 0 0; box-shadow: 0 10px 20px rgba(0,0,0,0.2); } .cake::before { content: ''; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 300px; height: 40px; background: linear-gradient(to bottom, #f4a261, #e76f51); border-radius: 50%; } .cake::after { content: ''; position: absolute; top: -40px; left: 50%; transform: translateX(-50%); width: 200px; height: 40px; background: linear-gradient(to bottom, #f4a261, #e76f51); border-radius: 50%; } .candles { position: absolute; top: -60px; left: 50%; transform: translateX(-50%); display: flex; justify-content: center; gap: 20px; } .candle { width: 10px; height: 50px; background: #fff; border-radius: 5px 5px 0 0; position: relative; } .candle::before { content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 15px; height: 15px; background: #ffeb3b; border-radius: 50%; animation: flicker 1s infinite alternate; } @keyframes flicker { 0% { opacity: 1; } 100% { opacity: 0.7; } } .age { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); font-size: 48px; font-weight: bold; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); } .message { position: absolute; top: 80px; left: 50%; transform: translateX(-50%); font-size: 24px; font-weight: bold; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); text-align: center; } .decorations { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; } .decoration { position: absolute; font-size: 20px; pointer-events: none; } .letter { max-width: 600px; background: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; line-height: 1.6; } .letter h1 { font-size: 24px; margin-bottom: 20px; color: #e76f51; } .letter p { margin: 10px 0; } .signature { margin-top: 20px; font-style: italic; font-weight: bold; } </style> </head> <body> <div class="controls"> <h2>Cake Decorator</h2> <label> Number of Candles: <input type="number" id="candleCount" min="1" max="50" value="21"> </label> <label> Cake Message: <input type="text" id="cakeMessage" placeholder="e.g., Happy Birthday Kaoutar!" maxlength="30"> </label> <button onclick="updateCake()">Update Cake</button> <button onclick="addSprinkle()">Add Sprinkle</button> <button onclick="addIcing()">Add Icing</button> <button onclick="clearDecorations()">Clear Decorations</button> </div> <div class="cake-container"> <div class="cake"> <div class="age" id="ageDisplay">21</div> <div class="message" id="messageDisplay"></div> <div class="decorations" id="decorations"></div> </div> <div class="candles" id="candles"></div> </div> <div class="letter"> <h1>My Love, My Kbida Kaoutar,</h1> <p>There are moments where I stop and realize how lucky I am, lucky that out of everyone in this world, you are the one my heart chose. And even with the distance between us, you’ve become the closest part of my life—the one I think of every morning, and the last thought before I sleep.</p> <p>You’re about to turn 21—a new year of your life, a new chapter. And I want this chapter to be filled with love, safety, and the certainty that you are not walking it alone. I’m right here with you, always. Even if my hands can’t reach you yet, my heart already holds you so gently.</p> <p>You have no idea how strong you make me feel. How your smile even through a phone can turn a difficult day into something soft and hopeful. You have a way of bringing peace into my chaos, of making distance feel small, and of reminding me that love doesn’t need a map… it always finds its way.</p> <p>I want you to feel deeply loved, the way you deserve.<br> I want you to feel safe, knowing you are cherished by someone who sees your soul.<br> I want you to feel proud, knowing that my loyalty belongs only to you.</p> <p>One day—and it’s closer than it seems—I will hold you on your birthday instead of celebrating from afar. I will look into your eyes, brush your hair behind your ear, and kiss your forehead as I whisper, “Happy Birthday, my angel… I’m yours and only yours.”</p> <p>Until that day arrives, remember this:<br> You are turning 21, but you have already given my life a thousand reasons to grow.<br> You are my future, my peace, my favorite dream.<br> And I choose you today, tomorrow, and every year of your life.</p> <p class="signature">With all of my love deeply, proudly, endlessly…<br> Yours forever,<br> Saad</p> </div> <script> function updateCake() { const candleCount = document.getElementById('candleCount').value; const message = document.getElementById('cakeMessage').value; const candlesDiv = document.getElementById('candles'); const messageDisplay = document.getElementById('messageDisplay'); // Update candles candlesDiv.innerHTML = ''; for (let i = 0; i < candleCount; i++) { const candle = document.createElement('div'); candle.className = 'candle'; candlesDiv.appendChild(candle); } // Update message messageDisplay.textContent = message; } function addSprinkle() { const decorations = document.getElementById('decorations'); const sprinkle = document.createElement('div'); sprinkle.className = 'decoration'; sprinkle.textContent = '✨'; sprinkle.style.left = Math.random() * 80 + '%'; sprinkle.style.top = Math.random() * 80 + '%'; decorations.appendChild(sprinkle); } function addIcing() { const decorations = document.getElementById('decorations'); const icing = document.createElement('div'); icing.className = 'decoration'; icing.textContent = '🍬'; icing.style.left = Math.random() * 80 + '%'; icing.style.top = Math.random() * 80 + '%'; decorations.appendChild(icing); } function clearDecorations() { document.getElementById('decorations').innerHTML = ''; } // Initialize with default values updateCake(); </script> </body> </html> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy 21st Birthday, Kaoutar 🎂</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Arial", sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px 10px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
+      background: radial-gradient(circle at top, #ffe6f2 0%, #ffb3d9 40%, #ff8fb8 100%);
+      color: #333;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Floating hearts background */
+    .hearts-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      font-size: 20px;
+      opacity: 0.9;
+      animation: floatUp 6s linear forwards;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) scale(0.7);
+        opacity: 0;
+      }
+    }
+
+    .main-card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 860px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .top-controls {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(6px);
+      padding: 16px 14px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      text-align: center;
+    }
+
+    .top-controls h1 {
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: #e63946;
+    }
+
+    .top-controls p {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-bottom: 12px;
+    }
+
+    .magic-btn {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ff6b6b, #f4a261);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
+    }
+
+    .magic-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .magic-btn:active {
+      transform: translateY(0) scale(0.98);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .hint-text {
+      font-size: 12px;
+      opacity: 0.7;
+      margin-top: 6px;
+    }
+
+    .layout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .cake-card,
+    .letter-card {
+      background: rgba(255, 255, 255, 0.97);
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      padding: 18px 16px 22px;
+    }
+
+    .cake-card {
+      flex: 1 1 320px;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      animation: floatCard 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatCard {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .cake-title {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #e76f51;
+    }
+
+    .controls {
+      background: #fff7fb;
+      border-radius: 12px;
+      padding: 10px 10px 12px;
+      box-shadow: inset 0 0 0 1px rgba(231, 111, 81, 0.09);
+      font-size: 13px;
+    }
+
+    .controls-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .controls label {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      font-weight: 600;
+      color: #444;
+    }
+
+    .controls input {
+      width: 100%;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 13px;
+    }
+
+    .controls-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    .controls button {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: none;
+      font-size: 12px;
+      cursor: pointer;
+      background: #e76f51;
+      color: #fff;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+      white-space: nowrap;
+    }
+
+    .controls button:hover {
+      background: #d65a3d;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
+    }
+
+    .controls button:active {
+      transform: translateY(0);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+    }
+
+    .cake-container {
+      position: relative;
+      width: min(360px, 80vw);
+      height: 260px;
+      margin: 8px auto 0;
+    }
+
+    .cake {
+      position: absolute;
+      width: 100%;
+      height: 60%;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(to bottom, #f4a261, #e76f51);
+      border-radius: 50% 50% 20px 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+    .cake::before {
+      content: "";
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 40px;
+      background: linear-gradient(to bottom, #fbd6c8, #f4a261);
+      border-radius: 50%;
+    }
+
+    .cake::after {
+      content: "";
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 38px;
+      background: linear-gradient(to bottom, #ffe6f2, #f4a261);
+      border-radius: 50%;
+    }
+
+    .cake-stripes {
+      position: absolute;
+      inset: 30% 5% 15%;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.28),
+        rgba(255, 255, 255, 0.28) 8px,
+        rgba(255, 255, 255, 0.02) 8px,
+        rgba(255, 255, 255, 0.02) 16px
+      );
+      opacity: 0.85;
+    }
+
+    .age {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 44px;
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.45);
+    }
+
+    .message {
+      position: absolute;
+      top: 72px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
+      text-align: center;
+      padding: 0 10px;
+    }
+
+    .decorations {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .decoration {
+      position: absolute;
+      font-size: 20px;
+      animation: bounce 2.4s ease-in-out infinite alternate;
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-6px);
+      }
+    }
+
+    .candles {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .candle {
+      width: 10px;
+      height: 50px;
+      background: #fff;
+      border-radius: 5px 5px 0 0;
+      position: relative;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.18);
+    }
+
+    .candle::before {
+      content: "";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 15px;
+      height: 18px;
+      background: radial-gradient(circle at 30% 20%, #ffffff 0, #ffe066 40%, #ff9f1c 80%);
+      border-radius: 50%;
+      animation: flicker 1s infinite alternate;
+      box-shadow: 0 0 8px rgba(255, 230, 102, 0.9);
+    }
+
+    @keyframes flicker {
+      0% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+      }
+      100% {
+        opacity: 0.7;
+        transform: translateX(-50%) scale(0.9);
+      }
+    }
+
+    .letter-card {
+      flex: 1 1 320px;
+      max-width: 420px;
+      line-height: 1.6;
+      animation: fadeIn 1.2s ease both;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .letter-card h2 {
+      font-size: 20px;
+      margin-bottom: 14px;
+      color: #e63946;
+      text-align: center;
+    }
+
+    .letter-card p {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    .letter-card p.signature {
+      margin-top: 16px;
+      font-style: italic;
+      font-weight: bold;
+      text-align: right;
+      color: #e76f51;
+    }
+
+    .divider {
+      width: 80px;
+      height: 3px;
+      border-radius: 999px;
+      margin: 6px auto 12px;
+      background: linear-gradient(90deg, #ff6b6b, #f4a261, #ffb3d9);
+    }
+
+    @media (max-width: 600px) {
+      .top-controls h1 {
+        font-size: 18px;
+      }
+      .cake-title {
+        font-size: 16px;
+      }
+      .letter-card h2 {
+        font-size: 18px;
+      }
+      .cake-container {
+        height: 240px;
+      }
+      .age {
+        font-size: 38px;
+      }
+      .message {
+        font-size: 18px;
+      }
+      body {
+        padding-top: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating hearts -->
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <div class="main-card">
+    <div class="top-controls">
+      <h1>Happy 21st Birthday, My Love Kaoutar 🎂❤️</h1>
+      <p>
+        Tap the button to start the magic – music, hearts and your own little
+        birthday world made just for you.
+      </p>
+      <button class="magic-btn" id="magicButton">Tap to start the magic ✨</button>
+      <div class="hint-text">If you don’t hear music, tap the button again.</div>
+    </div>
+
+    <div class="layout">
+      <!-- Cake + controls -->
+      <div class="cake-card">
+        <div class="cake-title">Your Birthday Cake Decorator 🎀</div>
+        <div class="divider"></div>
+
+        <div class="controls">
+          <div class="controls-row">
+            <label>
+              Number of Candles
+              <input type="number" id="candleCount" min="1" max="50" value="21" />
+            </label>
+            <label>
+              Cake Message
+              <input
+                type="text"
+                id="cakeMessage"
+                placeholder="e.g., Happy Birthday Kaoutar!"
+                maxlength="30"
+              />
+            </label>
+          </div>
+          <div class="controls-buttons">
+            <button type="button" onclick="updateCake()">Update Cake</button>
+            <button type="button" onclick="addSprinkle()">Add Sparkles ✨</button>
+            <button type="button" onclick="addIcing()">Add Candy 🍬</button>
+            <button type="button" onclick="clearDecorations()">Clear Decor</button>
+          </div>
+        </div>
+
+        <div class="cake-container">
+          <div class="cake">
+            <div class="cake-stripes"></div>
+            <div class="age" id="ageDisplay">21</div>
+            <div class="message" id="messageDisplay">Happy 21st, my Kaoutar</div>
+            <div class="decorations" id="decorations"></div>
+          </div>
+          <div class="candles" id="candles"></div>
+        </div>
+      </div>
+
+      <!-- Letter -->
+      <div class="letter-card">
+        <h2>My Love, My Kbida Kaoutar,</h2>
+        <div class="divider"></div>
+        <p>
+          There are moments where I stop and realize how lucky I am, lucky that
+          out of everyone in this world, you are the one my heart chose. And even
+          with the distance between us, you’ve become the closest part of my
+          life—the one I think of every morning, and the last thought before I
+          sleep.
+        </p>
+        <p>
+          You’re turning 21—a new year of your life, a new chapter. And I want
+          this chapter to be filled with love, safety, and the certainty that you
+          are not walking it alone. I’m right here with you, always. Even if my
+          hands can’t reach you yet, my heart already holds you so gently.
+        </p>
+        <p>
+          You have no idea how strong you make me feel. How your smile even
+          through a phone can turn a difficult day into something soft and
+          hopeful. You have a way of bringing peace into my chaos, of making
+          distance feel small, and of reminding me that love doesn’t need a map…
+          it always finds its way.
+        </p>
+        <p>
+          I want you to feel deeply loved, the way you deserve.<br />
+          I want you to feel safe, knowing you are cherished by someone who sees
+          your soul.<br />
+          I want you to feel proud, knowing that my loyalty belongs only to you.
+        </p>
+        <p>
+          One day—and it’s closer than it seems—I will hold you on your birthday
+          instead of celebrating from afar. I will look into your eyes, brush
+          your hair behind your ear, and kiss your forehead as I whisper, “Happy
+          Birthday, my angel… I’m yours and only yours.”
+        </p>
+        <p>
+          Until that day arrives, remember this:<br />
+          You are turning 21, but you have already given my life a thousand
+          reasons to grow.<br />
+          You are my future, my peace, my favorite dream.<br />
+          And I choose you today, tomorrow, and every year of your life.
+        </p>
+        <p class="signature">
+          With all of my love deeply, proudly, endlessly…<br />
+          Yours forever,<br />
+          Saad
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background music (put your own MP3 in the src) -->
+  <audio id="bgMusic" src="romantic-piano.mp3" loop></audio>
+
+  <script>
+    // --- Cake logic ---
+    function updateCake() {
+      const candleCount = document.getElementById("candleCount").value;
+      const message = document.getElementById("cakeMessage").value || "Happy 21st, my Kaoutar";
+      const candlesDiv = document.getElementById("candles");
+      const messageDisplay = document.getElementById("messageDisplay");
+
+      candlesDiv.innerHTML = "";
+      const count = Math.min(Math.max(parseInt(candleCount || 0), 1), 50);
+      for (let i = 0; i < count; i++) {
+        const candle = document.createElement("div");
+        candle.className = "candle";
+        candlesDiv.appendChild(candle);
+      }
+
+      messageDisplay.textContent = message;
+    }
+
+    function addSprinkle() {
+      const decorations = document.getElementById("decorations");
+      const sprinkle = document.createElement("div");
+      sprinkle.className = "decoration";
+      sprinkle.textContent = "✨";
+      sprinkle.style.left = Math.random() * 80 + "%";
+      sprinkle.style.top = Math.random() * 60 + "%";
+      decorations.appendChild(sprinkle);
+    }
+
+    function addIcing() {
+      const decorations = document.getElementById("decorations");
+      const icing = document.createElement("div");
+      icing.className = "decoration";
+      icing.textContent = "🍬";
+      icing.style.left = Math.random() * 80 + "%";
+      icing.style.top = Math.random() * 60 + "%";
+      decorations.appendChild(icing);
+    }
+
+    function clearDecorations() {
+      document.getElementById("decorations").innerHTML = "";
+    }
+
+    // Initialize cake
+    updateCake();
+
+    // --- Hearts + music ---
+    const heartsContainer = document.getElementById("heartsContainer");
+    const magicButton = document.getElementById("magicButton");
+    const bgMusic = document.getElementById("bgMusic");
+    let heartInterval = null;
+    let magicStarted = false;
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "❤";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = 16 + Math.random() * 18 + "px";
+      heartsContainer.appendChild(heart);
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    async function startMagic() {
+      // Start hearts animation
+      if (!heartInterval) {
+        for (let i = 0; i < 12; i++) {
+          setTimeout(createHeart, i * 200);
+        }
+        heartInterval = setInterval(createHeart, 650);
+      }
+
+      // Try to play music
+      try {
+        await bgMusic.play();
+      } catch (e) {
+        // Some browsers need another tap; hint text already explains that
+      }
+
+      if (!magicStarted) {
+        magicStarted = true;
+        magicButton.textContent = "Magic is on ✨ (Tap again if you need sound)";
+      }
+    }
+
+    magicButton.addEventListener("click", startMagic);
+  </script>
+</body>
+</html>
